@@ -19,4 +19,11 @@ class PortofolioController extends Controller
             'portofolios' => Portofolio::latest()->get(),
         ]);
     }
+
+    public function laporan()
+    {
+        return view('laporan', [
+            'laporanProject' => Portofolio::latest()->first(),
+        ]);
+    }
 }

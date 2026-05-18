@@ -4,15 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Portofolio extends Model
+class Laporan extends Model
 {
+    protected $table = 'laporan';
+
     protected $fillable = [
-        'nama_project',
-        'deskripsi_project',
+        'judul',
+        'portofolio_id',
         'analisis_masalah',
         'kebutuhan_sistem',
         'arsitektur_tech_stack',
-        'diagram_path',
-        'link_github',
+        'diagram_erd',
+        'diagram_flowchart',
+        'diagram_usecase',
     ];
 }

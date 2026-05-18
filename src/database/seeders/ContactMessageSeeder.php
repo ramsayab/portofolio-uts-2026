@@ -12,30 +12,28 @@ class ContactMessageSeeder extends Seeder
      */
     public function run(): void
     {
-        ContactMessage::query()->delete();
-
-        ContactMessage::query()->insert([
+        ContactMessage::firstOrCreate(
+            ['email' => 'aulia@example.com'],
             [
                 'name' => 'Aulia Pratama',
-                'email' => 'aulia@example.com',
                 'message' => 'Halo, saya ingin diskusi mengenai project prediksi harga rumah dan kemungkinan kolaborasi.',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+            ]
+        );
+
+        ContactMessage::firstOrCreate(
+            ['email' => 'dina@example.com'],
             [
                 'name' => 'Dina Rahma',
-                'email' => 'dina@example.com',
                 'message' => 'Saya tertarik dengan layanan analisis data. Bisa dibantu untuk konsultasi singkat?',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+            ]
+        );
+
+        ContactMessage::firstOrCreate(
+            ['email' => 'fajar@example.com'],
             [
                 'name' => 'Fajar Nugraha',
-                'email' => 'fajar@example.com',
                 'message' => 'Apakah Anda menerima project machine learning untuk tugas akhir atau freelance?',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+            ]
+        );
     }
 }
