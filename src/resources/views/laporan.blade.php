@@ -47,6 +47,13 @@
             line-height: 1.8;
         }
 
+        .laporan-intro a {
+            color: #111827;
+            font-weight: 800;
+            text-decoration: underline;
+            text-underline-offset: 0.18em;
+        }
+
         .laporan-content {
             display: grid;
             grid-template-columns: 1fr;
@@ -131,7 +138,7 @@
             <p class="laporan-label">Laporan</p>
             <h2 class="laporan-title">Laporan Awal Project Akhir</h2>
             <p class="laporan-intro">
-                Laporan ini merupakan versi ringkasan dari laporan asli yang ada di <a href="">sini</a>.
+                Laporan ini merupakan versi ringkasan dari laporan asli yang ada di <a href="https://github.com/ramsayab/portofolio-uts-2026/blob/main/docs/LAPORAN-AWAL-PROJECT-AKHIR.pdf" target="_blank" rel="noopener noreferrer">sini</a>.
             </p>
         </div>
 

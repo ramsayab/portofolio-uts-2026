@@ -9,10 +9,6 @@ class Portofolio extends Model
     protected $fillable = [
         'nama_project',
         'deskripsi_project',
-        'analisis_masalah',
-        'kebutuhan_sistem',
-        'arsitektur_tech_stack',
-        'diagram_path',
         'link_github',
     ];
 }
