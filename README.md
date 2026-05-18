@@ -1,6 +1,10 @@
-# Ramsay Abelson
-
-**NIM: 20240801042**
+| Nama | Ramsay Abelson |
+| --- | --- |
+| NIM | 20240801042 |
+| Mata Kuliah | Pemrograman Web (CR002) |
+| Dosen Pengampu | Jefry Sunupurwa Asri, S.Kom., M.Kom |
+| Program Studi | Teknik Informatika |
+| Universitas | Universitas Esa Unggul |
 
 <p>
   <a href="docs/LAPORAN-AWAL-PROJECT-AKHIR.pdf">
