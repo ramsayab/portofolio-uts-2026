@@ -22,13 +22,17 @@
             </p>
         </div>
 
-        <div class="services-grid">
-            @forelse ($portofolios as $index => $portofolio)
-                <div class="service-item reveal {{ $index === 1 ? 'reveal-delay-1' : '' }} {{ $index === 2 ? 'reveal-delay-2' : '' }} {{ $index >= 3 ? 'reveal-delay-3' : '' }}">
-                    <h3>{{ $portofolio->nama_project }}</h3>
-                    <p>{{ $portofolio->deskripsi_project }}</p>
-                    <div style="margin-top: 1.5rem;">
-                        <a href="{{ $portofolio->link_github }}" target="_blank" rel="noopener" class="btn-primary">Lihat GitHub</a>
+        <div class="services-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
+            @forelse ($portofolios as $portofolio)
+                <div class="service-card reveal" style="background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); padding:1.5rem; border-radius:12px; display:flex; gap:1rem; align-items:flex-start;">
+                    <div style="width:72px; height:72px; background:linear-gradient(135deg,#7ad2ff,#4aa8ff); border-radius:8px; flex:0 0 72px; display:flex; align-items:center; justify-content:center; color:#06111f; font-weight:800;">PJ</div>
+                    <div style="flex:1;">
+                        <h3 style="margin:0 0 0.5rem 0; font-size:1.15rem;">{{ $portofolio->nama_project }}</h3>
+                        <p style="margin:0 0 1rem 0; color:#cfcfcf;">{{ Str::limit($portofolio->deskripsi_project, 160) }}</p>
+                        <div style="display:flex; gap:0.75rem;">
+                            <a href="{{ $portofolio->link_github }}" target="_blank" rel="noopener" class="btn-primary" style="padding:0.6rem 1rem; border-radius:8px; background:#111827; color:#fff; text-decoration:none;">Lihat GitHub</a>
+                            <a href="{{ url('/portofolio/'.$portofolio->id) }}" class="btn-secondary" style="padding:0.6rem 1rem; border-radius:8px; background:transparent; border:1px solid rgba(255,255,255,0.08); color:#fff; text-decoration:none;">Detail</a>
+                        </div>
                     </div>
                 </div>
             @empty

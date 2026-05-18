@@ -1,7 +1,7 @@
 @extends('layouts.monica')
 
-@section('title', 'Ramsay Abelson - ML Engineer & Data Scientist')
-@section('meta_description', 'ML Engineer passionate about building intelligent systems, deep learning, and data-driven solutions.')
+@section('title', 'Ramsay Abelson - Engineer & Developer')
+@section('meta_description', 'Engineer focused on building practical, scalable software and data solutions.')
 
 @section('content')
 
@@ -15,10 +15,9 @@
         <p class="intro-pretitle reveal">Hello, I'm Ramsay Abelson</p>
 
         <h1 class="reveal reveal-delay-1">
-            I create data-driven<br>
-            solutions and machine<br>
-            learning models that<br>
-            deliver insights.
+            I design and build practical<br>
+            software solutions that<br>
+            deliver real impact.
         </h1>
 
         <a href="#about" class="intro-scroll reveal reveal-delay-2">
@@ -40,15 +39,13 @@
 
         <div class="about-left">
             <p class="section-label reveal">About Me</p>
-            <h2 class="reveal reveal-delay-1">Machine learning engineer dengan passion untuk AI & data science.</h2>
+            <h2 class="reveal reveal-delay-1">Engineer berfokus pada solusi perangkat lunak yang efektif.</h2>
             <p class="reveal reveal-delay-2">
-                Saya adalah seorang ML engineer yang passionate dalam mengembangkan intelligent systems dan 
-                model machine learning yang sophisticated. Sejak awal, saya fokus pada deep learning, data processing, 
-                dan implementasi AI solutions yang praktis dan impactful di berbagai domain.
+                Saya membangun solusi yang menyelesaikan masalah nyata — dari desain sistem sampai implementasi dan
+                deployment. Pendekatan saya pragmatis: solusi harus dapat dioperasikan, mudah dipelihara, dan memberikan nilai.
             </p>
             <p class="reveal reveal-delay-2">
-                Passion saya adalah dalam mengubah raw data menjadi actionable intelligence melalui teknik machine learning 
-                yang advanced, dan menciptakan model yang tidak hanya akurat tapi juga scalable dan efficient untuk production environment.
+                Saya suka bekerja lintas domain untuk menerjemahkan kebutuhan menjadi produk yang dapat dipakai oleh pengguna.
             </p>
         </div><!-- /about-left -->
 
