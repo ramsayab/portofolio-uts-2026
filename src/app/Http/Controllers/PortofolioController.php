@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laporan;
 use App\Models\Portofolio;
 
 class PortofolioController extends Controller
@@ -23,7 +24,7 @@ class PortofolioController extends Controller
     public function laporan()
     {
         return view('laporan', [
-            'laporanProject' => Portofolio::latest()->first(),
+            'laporan' => Laporan::latest()->first(),
         ]);
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('laporan', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->foreignId('portofolio_id')->constrained('portofolios')->cascadeOnDelete();
+            $table->text('deskripsi_singkat')->nullable();
             $table->longText('analisis_masalah')->nullable();
             $table->longText('kebutuhan_sistem')->nullable();
             $table->longText('arsitektur_tech_stack')->nullable();
