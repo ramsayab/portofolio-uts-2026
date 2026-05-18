@@ -30,6 +30,19 @@ class PortofolioResource extends Resource
                     ->required()
                     ->rows(6)
                     ->columnSpanFull(),
+                Textarea::make('analisis_masalah')
+                    ->rows(6)
+                    ->columnSpanFull(),
+                Textarea::make('kebutuhan_sistem')
+                    ->rows(6)
+                    ->columnSpanFull(),
+                Textarea::make('arsitektur_tech_stack')
+                    ->rows(6)
+                    ->columnSpanFull(),
+                TextInput::make('diagram_path')
+                    ->label('Path Diagram (ERD / Flowchart)')
+                    ->helperText('Contoh: images/erd-project.png')
+                    ->maxLength(255),
                 TextInput::make('link_github')
                     ->label('Link GitHub')
                     ->url()
@@ -48,6 +61,9 @@ class PortofolioResource extends Resource
                 TextColumn::make('deskripsi_project')
                     ->limit(80)
                     ->wrap(),
+                TextColumn::make('diagram_path')
+                    ->label('Diagram')
+                    ->limit(30),
                 TextColumn::make('link_github')
                     ->label('GitHub')
                     ->url(fn (Portofolio $record): string => $record->link_github, shouldOpenInNewTab: true)

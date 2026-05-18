@@ -25,5 +25,6 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/portofolio', [PortofolioController::class, 'index']);
 Route::get('/portofolio/{slug}', [PortofolioController::class, 'show']);
+Route::get('/laporan', [PortofolioController::class, 'laporan'])->name('laporan');
 
 Route::post('/contact', [ContactMessageController::class, 'store'])->name('contact');
