@@ -7,12 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Portofolio extends Model
 {
     protected $fillable = [
-    'title',
-    'slug',
-    'short_description',
-    'problem_analysis',
-    'tech_stack',
-    'diagram',
-    'pdf',
-];
+        'nama_project',
+        'deskripsi_project',
+        'link_github',
+    ];
 }

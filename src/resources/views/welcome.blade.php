@@ -165,7 +165,7 @@
 <!-- ================================================================
      KONTAK
 ================================================================ -->
-<section class="s-cta" id="contact">
+<section class="s-cta contact-section" id="contact">
     <div class="cta-inner">
         <div class="cta-content reveal">
             <h2>Hubungi saya untuk diskusi proyek.</h2>
@@ -190,45 +190,36 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('contact') }}" class="contact-form reveal reveal-delay-2" style="max-width: 900px; margin: 2rem auto 0; background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%); padding: 4rem; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);">
+        <form method="POST" action="{{ route('contact') }}" class="contact-form reveal reveal-delay-2">
             @csrf
             
-            <div style="margin-bottom: 2.5rem;">
-                <label for="name" style="display: block; margin-bottom: 1rem; font-weight: 600; color: #FFF; font-size: 1.2rem;">Nama Lengkap</label>
-                <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="Siapa nama Anda?" required 
-                    style="width: 100%; padding: 1.4rem 1.8rem; background: rgba(255, 255, 255, 0.08); border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 14px; color: #FFF; font-family: inherit; font-size: 1.15rem; transition: all 0.3s ease;"
-                    onfocus="this.style.background='rgba(255, 255, 255, 0.12)'; this.style.borderColor='rgba(100, 200, 255, 0.5)';"
-                    onblur="this.style.background='rgba(255, 255, 255, 0.08)'; this.style.borderColor='rgba(255, 255, 255, 0.15)';">
-                @error('name')
-                    <p style="color: #ff6b6b; font-size: 1rem; margin-top: 0.6rem;">{{ $message }}</p>
-                @enderror
+            <div class="contact-grid">
+                <div class="contact-field">
+                    <label for="name" class="contact-label">Nama Lengkap</label>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="Siapa nama Anda?" required class="contact-input">
+                    @error('name')
+                        <p class="contact-error">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="contact-field">
+                    <label for="email" class="contact-label">Email</label>
+                    <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Email Anda" required class="contact-input">
+                    @error('email')
+                        <p class="contact-error">{{ $message }}</p>
+                    @enderror
+                </div>
             </div>
 
-            <div style="margin-bottom: 2.5rem;">
-                <label for="email" style="display: block; margin-bottom: 1rem; font-weight: 600; color: #FFF; font-size: 1.2rem;">Email</label>
-                <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Email Anda" required 
-                    style="width: 100%; padding: 1.4rem 1.8rem; background: rgba(255, 255, 255, 0.08); border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 14px; color: #FFF; font-family: inherit; font-size: 1.15rem; transition: all 0.3s ease;"
-                    onfocus="this.style.background='rgba(255, 255, 255, 0.12)'; this.style.borderColor='rgba(100, 200, 255, 0.5)';"
-                    onblur="this.style.background='rgba(255, 255, 255, 0.08)'; this.style.borderColor='rgba(255, 255, 255, 0.15)';">
-                @error('email')
-                    <p style="color: #ff6b6b; font-size: 1rem; margin-top: 0.6rem;">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div style="margin-bottom: 3rem;">
-                <label for="message" style="display: block; margin-bottom: 1rem; font-weight: 600; color: #FFF; font-size: 1.2rem;">Pesan</label>
-                <textarea id="message" name="message" rows="10" placeholder="Ceritakan tentang project atau topik yang ingin Anda diskusikan..." required 
-                    style="width: 100%; padding: 1.4rem 1.8rem; background: rgba(255, 255, 255, 0.08); border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 14px; color: #FFF; font-family: inherit; font-size: 1.15rem; resize: vertical; transition: all 0.3s ease; line-height: 1.8;"
-                    onfocus="this.style.background='rgba(255, 255, 255, 0.12)'; this.style.borderColor='rgba(100, 200, 255, 0.5)';"
-                    onblur="this.style.background='rgba(255, 255, 255, 0.08)'; this.style.borderColor='rgba(255, 255, 255, 0.15)';">{{ old('message') }}</textarea>
+            <div class="contact-field contact-field--message">
+                <label for="message" class="contact-label">Pesan</label>
+                <textarea id="message" name="message" rows="8" placeholder="Ceritakan tentang project atau topik yang ingin Anda diskusikan..." required class="contact-input contact-textarea">{{ old('message') }}</textarea>
                 @error('message')
-                    <p style="color: #ff6b6b; font-size: 1rem; margin-top: 0.6rem;">{{ $message }}</p>
+                    <p class="contact-error">{{ $message }}</p>
                 @enderror
             </div>
 
-            <button type="submit" style="width: 100%; padding: 1.8rem 3rem; background: linear-gradient(135deg, #64c8ff 0%, #42a5f5 100%); color: #000; font-weight: 800; font-size: 1.3rem; border: none; border-radius: 14px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 6px 25px rgba(100, 200, 255, 0.4); letter-spacing: 0.5px;"
-                onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 35px rgba(100, 200, 255, 0.6)';"
-                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 25px rgba(100, 200, 255, 0.4)';">
+            <button type="submit" class="contact-submit">
                 Kirim Pesan Sekarang
             </button>
         </form>
@@ -243,9 +234,139 @@
     </div>
 
     <style>
+        .contact-section .cta-inner {
+            display: block;
+        }
+
+        .contact-section .cta-content {
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-form {
+            width: 100%;
+            max-width: 980px;
+            margin: 3rem auto 0;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-field {
+            margin-bottom: 0;
+        }
+
+        .contact-field--message {
+            margin-bottom: 1.75rem;
+        }
+
+        .contact-label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 700;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .contact-input {
+            width: 100%;
+            min-height: 4.5rem;
+            padding: 1.25rem 1.5rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 12px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+        }
+
+        .contact-input:focus {
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(100, 200, 255, 0.65);
+            box-shadow: 0 0 0 4px rgba(100, 200, 255, 0.12);
+        }
+
+        .contact-textarea {
+            min-height: 190px;
+            resize: vertical;
+        }
+
+        .contact-submit {
+            width: 100%;
+            min-height: 4.6rem;
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, #7ad2ff 0%, #4aa8ff 100%);
+            color: #06111f;
+            font-weight: 800;
+            font-size: 1.08rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(74, 168, 255, 0.24);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+
+        .contact-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 36px rgba(74, 168, 255, 0.42);
+            filter: brightness(1.03);
+        }
+
+        .contact-submit:active {
+            transform: translateY(0);
+        }
+
+        .contact-error {
+            color: #ff8d8d;
+            font-size: 0.95rem;
+            margin-top: 0.6rem;
+        }
+
         input::placeholder,
         textarea::placeholder {
             color: rgba(255, 255, 255, 0.35);
+        }
+
+        @media (max-width: 768px) {
+            .contact-form {
+                padding: 1.5rem;
+                border-radius: 14px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+
+            .contact-label {
+                font-size: 1rem;
+            }
+
+            .contact-input {
+                font-size: 1rem;
+                min-height: 3.6rem;
+            }
+
+            .contact-textarea {
+                min-height: 180px;
+            }
+
+            .contact-submit {
+                padding: 1.15rem 1.5rem;
+                font-size: 1.05rem;
+            }
         }
     </style>
 </section><!-- /s-cta -->
