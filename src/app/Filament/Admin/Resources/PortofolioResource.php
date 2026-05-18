@@ -3,15 +3,15 @@
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\PortofolioResource\Pages;
-use App\Filament\Admin\Resources\PortofolioResource\RelationManagers;
 use App\Models\Portofolio;
 use Filament\Forms;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PortofolioResource extends Resource
 {
@@ -23,7 +23,18 @@ class PortofolioResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('nama_project')
+                    ->required()
+                    ->maxLength(255),
+                Textarea::make('deskripsi_project')
+                    ->required()
+                    ->rows(6)
+                    ->columnSpanFull(),
+                TextInput::make('link_github')
+                    ->label('Link GitHub')
+                    ->url()
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -31,10 +42,18 @@ class PortofolioResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('nama_project')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('deskripsi_project')
+                    ->limit(80)
+                    ->wrap(),
+                TextColumn::make('link_github')
+                    ->label('GitHub')
+                    ->url(fn (Portofolio $record): string => $record->link_github, shouldOpenInNewTab: true)
+                    ->limit(40),
             ])
             ->filters([
-                //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
