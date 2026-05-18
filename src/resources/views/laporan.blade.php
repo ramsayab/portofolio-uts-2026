@@ -4,126 +4,217 @@
 @section('meta_description', 'Laporan awal project akhir berisi ringkasan tujuan, ruang lingkup, dan rencana pengerjaan.')
 
 @section('content')
-<section class="s-services" id="top">
+<section class="laporan-page" id="top">
     <style>
+        .laporan-page {
+            background: #ffffff;
+            color: #111827;
+            padding: 7rem 1.5rem 4rem;
+        }
+
+        .laporan-wrap {
+            width: min(100%, 920px);
+            margin: 0 auto;
+        }
+
+        .laporan-head {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 1.5rem;
+        }
+
+        .laporan-label {
+            margin: 0 0 0.6rem;
+            color: #4b5563;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .laporan-title {
+            margin: 0 0 0.8rem;
+            color: #111827;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.1;
+        }
+
+        .laporan-intro {
+            margin: 0;
+            max-width: 760px;
+            color: #4b5563;
+            font-size: 1.38rem;
+            line-height: 1.8;
+        }
+
+        .laporan-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+        }
+
+        .laporan-section {
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 1.75rem;
+        }
+
+        .laporan-section:last-child {
+            border-bottom: 0;
+        }
+
+        .laporan-section h3 {
+            margin: 0 0 0.85rem;
+            color: #111827;
+            font-size: 2.05rem;
+            line-height: 1.3;
+        }
+
+        .laporan-section h4 {
+            margin: 0 0 0.7rem;
+            color: #111827;
+            font-size: 1.55rem;
+            line-height: 1.45;
+        }
+
+        .laporan-section p {
+            margin: 0;
+            color: #374151;
+            font-size: 1.38rem;
+            line-height: 1.9;
+        }
+
+        .laporan-muted {
+            color: #6b7280;
+        }
+
+        .laporan-diagram {
+            width: 100%;
+            margin-top: 0.8rem;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+        }
+
+        .laporan-diagram-path {
+            margin-top: 0.7rem !important;
+            color: #6b7280 !important;
+            font-size: 1.12rem !important;
+        }
+
         .laporan-cta {
             margin-top: 2.4rem;
-            text-align: center;
         }
 
         .laporan-cta-btn {
             display: inline-block;
-            padding: 0.95rem 1.6rem;
-            border-radius: 999px;
-            background: linear-gradient(135deg, #ff8a00 0%, #ffd400 45%, #ff3d00 100%);
-            color: #151515;
-            font-weight: 800;
-            font-size: 1.02rem;
-            letter-spacing: 0.02em;
+            border: 1px solid #111827;
+            padding: 0.8rem 1.2rem;
+            color: #111827;
+            font-weight: 700;
             text-decoration: none;
-            box-shadow: 0 10px 24px rgba(255, 138, 0, 0.34);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: background 0.2s ease, color 0.2s ease;
         }
 
         .laporan-cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 30px rgba(255, 138, 0, 0.48);
+            background: #111827;
+            color: #ffffff;
+        }
+
+        @media (max-width: 640px) {
+            .laporan-page {
+                padding: 5.5rem 1rem 3rem;
+            }
         }
     </style>
 
-    <div class="services-inner">
-        <div class="services-head">
-            <div>
-                <p class="section-label reveal">Laporan</p>
-                <h2 class="reveal reveal-delay-1">Laporan Awal Project Akhir</h2>
-            </div>
-            <p class="reveal reveal-delay-2">
-                Halaman detail laporan menampilkan data project secara dinamis dari database sesuai kebutuhan dokumen awal project akhir.
+    <div class="laporan-wrap">
+        <div class="laporan-head">
+            <p class="laporan-label">Laporan</p>
+            <h2 class="laporan-title">Laporan Awal Project Akhir</h2>
+            <p class="laporan-intro">
+                Laporan ini merupakan versi ringkasan dari laporan asli yang ada di <a href="">sini</a>.
             </p>
         </div>
 
-        @if($laporanProject)
+        @if($laporan)
             @php
                 $diagramErdUrl = null;
-                if (!empty($laporanProject->diagram_erd)) {
-                    $diagramErdUrl = str_starts_with($laporanProject->diagram_erd, 'http')
-                        ? $laporanProject->diagram_erd
-                        : asset($laporanProject->diagram_erd);
+                if (!empty($laporan->diagram_erd)) {
+                    $diagramErdUrl = str_starts_with($laporan->diagram_erd, 'http')
+                        ? $laporan->diagram_erd
+                        : asset($laporan->diagram_erd);
                 }
                 $diagramFlowchartUrl = null;
-                if (!empty($laporanProject->diagram_flowchart)) {
-                    $diagramFlowchartUrl = str_starts_with($laporanProject->diagram_flowchart, 'http')
-                        ? $laporanProject->diagram_flowchart
-                        : asset($laporanProject->diagram_flowchart);
+                if (!empty($laporan->diagram_flowchart)) {
+                    $diagramFlowchartUrl = str_starts_with($laporan->diagram_flowchart, 'http')
+                        ? $laporan->diagram_flowchart
+                        : asset($laporan->diagram_flowchart);
                 }
                 $diagramUsecaseUrl = null;
-                if (!empty($laporanProject->diagram_usecase)) {
-                    $diagramUsecaseUrl = str_starts_with($laporanProject->diagram_usecase, 'http')
-                        ? $laporanProject->diagram_usecase
-                        : asset($laporanProject->diagram_usecase);
+                if (!empty($laporan->diagram_usecase)) {
+                    $diagramUsecaseUrl = str_starts_with($laporan->diagram_usecase, 'http')
+                        ? $laporan->diagram_usecase
+                        : asset($laporan->diagram_usecase);
                 }
             @endphp
 
-            <div class="services-grid" style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:1.5rem;">
-                <article class="service-card reveal" style="background:#0b1220; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.5rem; grid-column:1 / -1;">
-                    <h3 style="margin:0 0 .8rem 0; font-size:1.4rem; color:#fff;">Judul Project &amp; Deskripsi Singkat</h3>
-                    <h4 style="margin:0 0 .6rem 0; font-size:1.2rem; color:#ffd166;">{{ $laporanProject->nama_project }}</h4>
-                    <p style="margin:0; color:#d1d5db;">{{ $laporanProject->deskripsi_project }}</p>
+            <div class="laporan-content">
+                <article class="laporan-section">
+                    <h3>Judul Project &amp; Deskripsi Singkat</h3>
+                    <h4>{{ $laporan->judul }}</h4>
+                    <p>{!! nl2br(e($laporan->deskripsi_singkat ?: 'Belum diisi.')) !!}</p>
                 </article>
 
-                <article class="service-card reveal reveal-delay-1" style="background:#0b1220; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.5rem;">
-                    <h3 style="margin:0 0 .8rem 0; font-size:1.4rem; color:#fff;">Analisis Masalah</h3>
-                    <p style="margin:0; color:#d1d5db;">{{ $laporanProject->analisis_masalah ?: 'Belum diisi.' }}</p>
+                <article class="laporan-section">
+                    <h3>Analisis Masalah &amp; Kebutuhan Sistem</h3>
+                    <h4>Analisis Masalah</h4>
+                    <p>{!! nl2br(e($laporan->analisis_masalah ?: 'Belum diisi.')) !!}</p>
+                    <h4 style="margin-top:1.2rem;">Kebutuhan Sistem</h4>
+                    <p>{!! nl2br(e($laporan->kebutuhan_sistem ?: 'Belum diisi.')) !!}</p>
                 </article>
 
-                <article class="service-card reveal reveal-delay-2" style="background:#0b1220; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.5rem;">
-                    <h3 style="margin:0 0 .8rem 0; font-size:1.4rem; color:#fff;">Kebutuhan Sistem</h3>
-                    <p style="margin:0; color:#d1d5db;">{{ $laporanProject->kebutuhan_sistem ?: 'Belum diisi.' }}</p>
+                <article class="laporan-section">
+                    <h3>Arsitektur &amp; Tech Stack</h3>
+                    <p>{!! nl2br(e($laporan->arsitektur_tech_stack ?: 'Belum diisi.')) !!}</p>
                 </article>
 
-                <article class="service-card reveal reveal-delay-3" style="background:#0b1220; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.5rem; grid-column:1 / -1;">
-                    <h3 style="margin:0 0 .8rem 0; font-size:1.4rem; color:#fff;">Arsitektur &amp; Tech Stack</h3>
-                    <p style="margin:0; color:#d1d5db;">{{ $laporanProject->arsitektur_tech_stack ?: 'Belum diisi.' }}</p>
-                </article>
-
-                <article class="service-card reveal reveal-delay-3" style="background:#0b1220; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.5rem; grid-column:1 / -1;">
-                    <h3 style="margin:0 0 .8rem 0; font-size:1.4rem; color:#fff;">Diagram ERD</h3>
+                <article class="laporan-section">
+                    <h3>Diagram ERD</h3>
                     @if($diagramErdUrl)
-                        <img src="{{ $diagramErdUrl }}" alt="Diagram ERD {{ $laporanProject->nama_project }}" style="width:100%; max-width:980px; border-radius:10px; border:1px solid rgba(255,255,255,0.14); background:#0f172a;">
-                        <p style="margin:0.8rem 0 0; color:#aab3c5; font-size:0.95rem;">Path diagram: {{ $laporanProject->diagram_erd }}</p>
+                        <img src="{{ $diagramErdUrl }}" alt="Diagram ERD {{ $laporan->judul }}" class="laporan-diagram">
+                        <p class="laporan-diagram-path">Path diagram: {{ $laporan->diagram_erd }}</p>
                     @else
-                        <p style="margin:0; color:#d1d5db;">Diagram ERD belum diisi. Silakan isi kolom <strong>diagram_erd</strong> pada data project.</p>
+                        <p class="laporan-muted">Diagram ERD belum diisi. Silakan isi kolom <strong>diagram_erd</strong> pada data laporan.</p>
                     @endif
                 </article>
 
-                <article class="service-card reveal reveal-delay-3" style="background:#0b1220; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.5rem; grid-column:1 / -1;">
-                    <h3 style="margin:0 0 .8rem 0; font-size:1.4rem; color:#fff;">Diagram Flowchart</h3>
+                <article class="laporan-section">
+                    <h3>Diagram Flowchart</h3>
                     @if($diagramFlowchartUrl)
-                        <img src="{{ $diagramFlowchartUrl }}" alt="Diagram Flowchart {{ $laporanProject->nama_project }}" style="width:100%; max-width:980px; border-radius:10px; border:1px solid rgba(255,255,255,0.14); background:#0f172a;">
-                        <p style="margin:0.8rem 0 0; color:#aab3c5; font-size:0.95rem;">Path diagram: {{ $laporanProject->diagram_flowchart }}</p>
+                        <img src="{{ $diagramFlowchartUrl }}" alt="Diagram Flowchart {{ $laporan->judul }}" class="laporan-diagram">
+                        <p class="laporan-diagram-path">Path diagram: {{ $laporan->diagram_flowchart }}</p>
                     @else
-                        <p style="margin:0; color:#d1d5db;">Diagram Flowchart belum diisi. Silakan isi kolom <strong>diagram_flowchart</strong> pada data project.</p>
+                        <p class="laporan-muted">Diagram Flowchart belum diisi. Silakan isi kolom <strong>diagram_flowchart</strong> pada data laporan.</p>
                     @endif
                 </article>
 
-                <article class="service-card reveal reveal-delay-3" style="background:#0b1220; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.5rem; grid-column:1 / -1;">
-                    <h3 style="margin:0 0 .8rem 0; font-size:1.4rem; color:#fff;">Diagram Use Case</h3>
+                <article class="laporan-section">
+                    <h3>Diagram Use Case</h3>
                     @if($diagramUsecaseUrl)
-                        <img src="{{ $diagramUsecaseUrl }}" alt="Diagram Use Case {{ $laporanProject->nama_project }}" style="width:100%; max-width:980px; border-radius:10px; border:1px solid rgba(255,255,255,0.14); background:#0f172a;">
-                        <p style="margin:0.8rem 0 0; color:#aab3c5; font-size:0.95rem;">Path diagram: {{ $laporanProject->diagram_usecase }}</p>
+                        <img src="{{ $diagramUsecaseUrl }}" alt="Diagram Use Case {{ $laporan->judul }}" class="laporan-diagram">
+                        <p class="laporan-diagram-path">Path diagram: {{ $laporan->diagram_usecase }}</p>
                     @else
-                        <p style="margin:0; color:#d1d5db;">Diagram Use Case belum diisi. Silakan isi kolom <strong>diagram_usecase</strong> pada data project.</p>
+                        <p class="laporan-muted">Diagram Use Case belum diisi. Silakan isi kolom <strong>diagram_usecase</strong> pada data laporan.</p>
                     @endif
                 </article>
             </div>
         @else
-            <article class="service-card reveal" style="background:#0b1220; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.5rem;">
-                <h3 style="margin:0 0 .8rem 0; font-size:1.4rem; color:#fff;">Data laporan belum tersedia</h3>
-                <p style="margin:0; color:#d1d5db;">Tambahkan data project melalui panel admin atau seeder agar halaman laporan dapat menampilkan konten dinamis.</p>
+            <article class="laporan-section">
+                <h3>Data laporan belum tersedia</h3>
+                <p>Tambahkan data laporan melalui panel admin atau seeder agar halaman laporan dapat menampilkan konten dinamis.</p>
             </article>
         @endif
 
-        <div class="services-cta reveal laporan-cta">
+        <div class="laporan-cta">
             <a href="{{ url('/portofolio') }}" class="laporan-cta-btn">Kembali ke Portofolio</a>
         </div>
     </div>

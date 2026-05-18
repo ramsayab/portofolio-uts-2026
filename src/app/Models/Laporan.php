@@ -10,7 +10,7 @@ class Laporan extends Model
 
     protected $fillable = [
         'judul',
-        'portofolio_id',
+        'deskripsi_singkat',
         'analisis_masalah',
         'kebutuhan_sistem',
         'arsitektur_tech_stack',
