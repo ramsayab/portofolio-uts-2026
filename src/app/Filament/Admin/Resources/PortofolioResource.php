@@ -4,7 +4,6 @@ namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\PortofolioResource\Pages;
 use App\Models\Portofolio;
-use Filament\Forms;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -17,7 +16,11 @@ class PortofolioResource extends Resource
 {
     protected static ?string $model = Portofolio::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
+
+    protected static ?string $navigationLabel = 'Portofolio';
+
+    protected static ?string $navigationGroup = 'Content';
 
     public static function form(Form $form): Form
     {
@@ -30,19 +33,6 @@ class PortofolioResource extends Resource
                     ->required()
                     ->rows(6)
                     ->columnSpanFull(),
-                Textarea::make('analisis_masalah')
-                    ->rows(6)
-                    ->columnSpanFull(),
-                Textarea::make('kebutuhan_sistem')
-                    ->rows(6)
-                    ->columnSpanFull(),
-                Textarea::make('arsitektur_tech_stack')
-                    ->rows(6)
-                    ->columnSpanFull(),
-                TextInput::make('diagram_path')
-                    ->label('Path Diagram (ERD / Flowchart)')
-                    ->helperText('Contoh: images/erd-project.png')
-                    ->maxLength(255),
                 TextInput::make('link_github')
                     ->label('Link GitHub')
                     ->url()
@@ -61,13 +51,13 @@ class PortofolioResource extends Resource
                 TextColumn::make('deskripsi_project')
                     ->limit(80)
                     ->wrap(),
-                TextColumn::make('diagram_path')
-                    ->label('Diagram')
-                    ->limit(30),
                 TextColumn::make('link_github')
                     ->label('GitHub')
                     ->url(fn (Portofolio $record): string => $record->link_github, shouldOpenInNewTab: true)
                     ->limit(40),
+                TextColumn::make('updated_at')
+                    ->dateTime('d M Y H:i')
+                    ->sortable(),
             ])
             ->filters([
             ])
