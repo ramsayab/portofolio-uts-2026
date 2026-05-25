@@ -1,9 +1,13 @@
 @extends('layouts.monica')
 
-@section('title', 'Ramsay Abelson - Engineer & Developer')
-@section('meta_description', 'Engineer focused on building practical, scalable software and data solutions.')
+@section('title', $dashboard->meta_title)
+@section('meta_description', $dashboard->meta_description)
 
 @section('content')
+
+@php
+    $techStackGroups = collect($dashboard->tech_stack_groups ?? []);
+@endphp
 
 <!-- ================================================================
      HERO / INTRO
@@ -12,12 +16,10 @@
     <div class="intro-bg"></div>
 
     <div class="intro-content">
-        <p class="intro-pretitle reveal">Hello, I'm Ramsay Abelson</p>
+        <p class="intro-pretitle reveal">{{ $dashboard->sapaan }}</p>
 
         <h1 class="reveal reveal-delay-1">
-            I design and build practical<br>
-            software solutions that<br>
-            deliver real impact.
+            {!! nl2br(e($dashboard->skill_singkat)) !!}
         </h1>
 
         <a href="#about" class="intro-scroll reveal reveal-delay-2">
@@ -25,7 +27,7 @@
                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 5v14M5 12l7 7 7-7"/>
             </svg>
-            Scroll for more
+            {{ $dashboard->hero_scroll_text }}
         </a>
     </div>
 </section><!-- /s-intro -->
@@ -38,19 +40,14 @@
     <div class="about-inner">
 
         <div class="about-left">
-            <p class="section-label reveal">About Me</p>
-            <h2 class="reveal reveal-delay-1">Engineer berfokus pada solusi perangkat lunak yang efektif.</h2>
-            <p class="reveal reveal-delay-2">
-                Saya membangun solusi yang menyelesaikan masalah nyata — dari desain sistem sampai implementasi dan
-                deployment. Pendekatan saya pragmatis: solusi harus dapat dioperasikan, mudah dipelihara, dan memberikan nilai.
-            </p>
-            <p class="reveal reveal-delay-2">
-                Saya suka bekerja lintas domain untuk menerjemahkan kebutuhan menjadi produk yang dapat dipakai oleh pengguna.
-            </p>
+            <p class="section-label reveal">{{ $dashboard->about_label }}</p>
+            <h2 class="reveal reveal-delay-1">{{ $dashboard->about_me }}</h2>
+            <p class="reveal reveal-delay-2">{{ $dashboard->deskripsi_about_me }}</p>
+            <p class="reveal reveal-delay-2">{{ $dashboard->about_paragraph_two }}</p>
         </div><!-- /about-left -->
 
         <div class="about-right reveal reveal-delay-2" style="display: flex; align-items: center; justify-content: center;">
-            <img src="{{ asset('images/profile.jpg') }}" alt="Ramsay Abelson" style="width: 100%; max-width: 400px; border-radius: 12px; object-fit: cover;">
+            <img src="{{ asset($dashboard->img_src_link) }}" alt="{{ $dashboard->profile_image_alt }}" style="width: 100%; max-width: 400px; border-radius: 12px; object-fit: cover;">
         </div>
 
     </div>
@@ -64,93 +61,31 @@
     <div class="about-inner">
 
         <div class="about-left">
-            <p class="section-label reveal">Tech Stack</p>
-            <h2 class="reveal reveal-delay-1">Tech stack yang saya kuasai.</h2>
+            <p class="section-label reveal">{{ $dashboard->tech_stack_intro }}</p>
+            <h2 class="reveal reveal-delay-1">{{ $dashboard->nama_tech_stack }}</h2>
         </div><!-- /about-left -->
 
         <div class="about-right reveal reveal-delay-2">
-            <div class="skill-group">
-                <p class="skill-group-title">Core Tech</p>
-                <div class="skill-grid">
-                    <div class="skill-card">
-                        <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python">
-                        <span>Python</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.simpleicons.org/cplusplus/00599C" alt="C++">
-                        <span>C++</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/openjdk.svg" alt="Java">
-                        <span>Java</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.simpleicons.org/php/777BB4" alt="PHP">
-                        <span>PHP</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.simpleicons.org/laravel/FF2D20" alt="Laravel">
-                        <span>Laravel</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.simpleicons.org/jupyter/F37626" alt="Jupyter">
-                        <span>Jupyter</span>
+            @foreach($techStackGroups as $group)
+                <div class="skill-group">
+                    <p class="skill-group-title">{{ data_get($group, 'title') }}</p>
+                    <div class="skill-grid">
+                        @foreach(data_get($group, 'skills', []) as $skill)
+                            <div class="skill-card">
+                                <img src="{{ data_get($skill, 'icon') }}" alt="{{ data_get($skill, 'alt') }}" @if(data_get($skill, 'icon_class')) style="{{ data_get($skill, 'icon_class') }}" @endif>
+                                <span>{{ data_get($skill, 'name') }}</span>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-            </div>
-
-            <div class="skill-group">
-                <p class="skill-group-title">Machine Learning &amp; Deep Learning</p>
-                <div class="skill-grid">
-                    <div class="skill-card">
-                        <img src="https://cdn.simpleicons.org/pytorch/EE4C2C" alt="PyTorch">
-                        <span>PyTorch</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.simpleicons.org/tensorflow/FF6F00" alt="TensorFlow">
-                        <span>TensorFlow</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.simpleicons.org/scikitlearn/F7931E" alt="scikit-learn">
-                        <span>scikit-learn</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.simpleicons.org/pandas/150458" alt="pandas">
-                        <span>pandas</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.simpleicons.org/numpy/013243" alt="NumPy">
-                        <span>NumPy</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.simpleicons.org/opencv/5C3EE8" alt="OpenCV">
-                        <span>OpenCV</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.simpleicons.org/keras/D00000" alt="Keras">
-                        <span>Keras</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/xgboost.svg" alt="XGBoost" style="filter: invert(1);">
-                        <span>XGBoost</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Created_with_Matplotlib-logo.svg" alt="Matplotlib">
-                        <span>Matplotlib</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://raw.githubusercontent.com/mwaskom/seaborn/master/doc/_static/logo-wide-lightbg.svg" alt="Seaborn">
-                        <span>Seaborn</span>
-                    </div>
-                </div>
-            </div>
+            @endforeach
 
             <div style="margin-top: 4rem; padding: 3rem 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); text-align: center; grid-column: 1 / -1;">
                 <p class="reveal reveal-delay-3" style="font-size: 1.4rem; color: #AAA; margin-bottom: 2rem; line-height: 1.6;">
-                    Ingin melihat project dan pengalaman saya dalam action?
+                    {{ $dashboard->tech_stack_cta_text }}
                 </p>
-                <a href="/portofolio" class="btn btn-white reveal reveal-delay-3" style="display: inline-block; padding: 1.5rem 4.5rem; background: #FFF; color: #000; text-decoration: none; font-weight: 700; font-size: 1.5rem; border-radius: 50px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2); letter-spacing: 0.5px;">
-                    → Lihat Project Saya ←
+                <a href="{{ $dashboard->tech_stack_cta_button_url }}" class="btn btn-white reveal reveal-delay-3" style="display: inline-block; padding: 1.5rem 4.5rem; background: #FFF; color: #000; text-decoration: none; font-weight: 700; font-size: 1.5rem; border-radius: 50px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2); letter-spacing: 0.5px;">
+                    {{ $dashboard->tech_stack_cta_button_label }}
                 </a>
             </div>
         </div>
@@ -165,9 +100,8 @@
 <section class="s-cta contact-section" id="contact">
     <div class="cta-inner">
         <div class="cta-content reveal">
-            <h2>Hubungi saya untuk diskusi proyek.</h2>
-            <p>Kalau kamu butuh bantuan data science, machine learning, atau analisis data,
-               saya siap bantu.</p>
+            <h2>{{ $dashboard->contact_title }}</h2>
+            <p>{{ $dashboard->contact_description }}</p>
         </div>
 
         @if($errors->any())
@@ -222,10 +156,10 @@
         </form>
 
         <div class="cta-actions reveal reveal-delay-3" style="margin-top: 3rem;">
-            <p style="color: #AAA; margin-bottom: 1.5rem; text-align: center; font-size: 1.05rem;">Atau hubungi saya langsung:</p>
+            <p style="color: #AAA; margin-bottom: 1.5rem; text-align: center; font-size: 1.05rem;">{{ $dashboard->contact_direct_label }}</p>
             <div style="display: flex; justify-content: center; gap: 1.5rem;">
-                <a href="https://wa.me/6283897376682" class="btn-cta" target="_blank" rel="noopener">WhatsApp</a>
-                <a href="mailto:ramsayabelson150@gmail.com" class="btn-cta">Email</a>
+                <a href="{{ $dashboard->contact_whatsapp_url }}" class="btn-cta" target="_blank" rel="noopener">{{ $dashboard->contact_whatsapp_label }}</a>
+                <a href="{{ $dashboard->contact_email_url }}" class="btn-cta">{{ $dashboard->contact_email_label }}</a>
             </div>
         </div>
     </div>
