@@ -14,6 +14,8 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('css/monica.css') }}">
 
+    @livewireStyles
+
     @stack('styles')
 </head>
 <body>
@@ -114,6 +116,8 @@
 
     <!-- Main JS -->
     <script src="{{ asset('js/monica.js') }}"></script>
+
+    @livewireScripts
 
     @stack('scripts')
 </body>
