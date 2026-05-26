@@ -142,6 +142,10 @@ Screenshot demo tersedia di folder `src/public/screenshot_demo`.
 
 ![Landing Page](src/public/screenshot_demo/landing_page.png)
 
+### Skill Stack
+
+![Skill Stack](src/public/screenshot_demo/skill_stack.png)
+
 ### Contact Form
 
 ![Contact Form](src/public/screenshot_demo/contact.png)
@@ -149,10 +153,6 @@ Screenshot demo tersedia di folder `src/public/screenshot_demo`.
 ### Admin Panel
 
 ![Admin Panel](src/public/screenshot_demo/admin_panel.png)
-
-### Skill Stack
-
-![Skill Stack](src/public/screenshot_demo/skill_stack.png)
 
 ## Lisensi
 
