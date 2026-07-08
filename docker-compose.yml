@@ -8,6 +8,8 @@ services:
     environment:
       - PROJECT_NAME=${PROJECT_NAME}
       - XDEBUG=${XDEBUG:-false}
+      - APP_URL=${APP_URL}
+      - ASSET_URL=${ASSET_URL}
     volumes:
       - ./src:/var/www/html
     depends_on:
