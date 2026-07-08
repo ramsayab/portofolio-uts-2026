@@ -37,7 +37,7 @@
      ABOUT
 ================================================================ -->
 <section class="s-about" id="about">
-    <div class="about-inner">
+    <div class="about-inner" style="grid-template-columns: 1fr; max-width: 800px;">
 
         <div class="about-left">
             <p class="section-label reveal">{{ $dashboard->about_label }}</p>
@@ -45,10 +45,6 @@
             <p class="reveal reveal-delay-2">{{ $dashboard->deskripsi_about_me }}</p>
             <p class="reveal reveal-delay-2">{{ $dashboard->about_paragraph_two }}</p>
         </div><!-- /about-left -->
-
-        <div class="about-right reveal reveal-delay-2" style="display: flex; align-items: center; justify-content: center;">
-            <img src="{{ asset($dashboard->img_src_link) }}" alt="{{ $dashboard->profile_image_alt }}" style="width: 100%; max-width: 400px; border-radius: 12px; object-fit: cover;">
-        </div>
 
     </div>
 </section><!-- /s-about -->
